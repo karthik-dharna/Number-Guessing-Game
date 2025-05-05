@@ -1,0 +1,37 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class NumberGuessingGame {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Random Re = new Random();
+        int numberToGuess = Re.nextInt(100) + 1;
+        int guess;
+        int attempts = 0;
+
+        System.out.println("Welcome to number guessing game!");
+        System.out.println("Think of a number between 1 to 100");
+
+        do {
+            guess = getUserGuess(sc);
+            attempts++;
+            giveHint(guess, numberToGuess);
+        } while (guess != numberToGuess);
+
+        System.out.println("You guessed it correctly in " + attempts + " attempts!");
+        sc.close();
+    }
+
+    public static int getUserGuess(Scanner sc) {
+        System.out.print("Enter your guess: ");
+        return sc.nextInt();
+    }
+
+    public static void giveHint(int guess, int target) {
+        if (guess < target) {
+            System.out.println("Too low!");
+        } else if (guess > target) {
+            System.out.println("Too high!");
+        }
+    }
+}
